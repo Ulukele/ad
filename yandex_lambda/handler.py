@@ -24,9 +24,3 @@ def handler(event, context):
     return {
         'statusCode': response_text
     }
-
-
-if __name__ == "__main__":
-    event = {'queryStringParameters': {'port': '2', 'round': '3'}}
-    response = handler(event, None)
-    print(response['statusCode'])
