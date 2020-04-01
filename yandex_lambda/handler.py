@@ -3,7 +3,6 @@
 import subprocess
 from verdict_codes import *
 
-NO_PARAMETERS = 404 #idk what code should be returned to such a call
 PYTHON_VERSION = 'python3.6'
 
 def handler(event, context):
@@ -25,3 +24,9 @@ def handler(event, context):
     return {
         'statusCode': response_text
     }
+
+
+if __name__ == "__main__":
+    event = {'queryStringParameters': {'port': '2', 'round': '3'}}
+    response = handler(event, None)
+    print(response['statusCode'])
