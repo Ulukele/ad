@@ -1,0 +1,26 @@
+""" main handler that handle http requests to yandex cloud """
+
+import subprocess
+
+NO_PARAMETERS = 404 #idk what code should be returned to such a call
+PYTHON_VERSION = 'python3.6'
+
+def handler(event, context):
+
+    if 'queryStringParameters' not in event:
+        return {
+            'statusCode': NO_PARAMETERS
+        }
+
+    for parameter in ('ip', 'port', 'round'):
+        if parameter not in event['queryStringParameters']:
+            return {
+                'statusCode': NO_PARAMETERS
+            }
+    
+    response = subprocess.run([PYTHON_VERSION, 'main.py', '--ip', event['queryStringParameters']['ip'], '--port', event['queryStringParameters']['port'], '--round', event['queryStringParameters']['round']], stdout=subprocess.PIPE)
+    response_text = response.stdout.decode('utf-8')
+
+    return {
+        'statusCode': 102
+    }
