@@ -8,8 +8,11 @@ PYTHON_VERSION = 'python3.7'
 
 def status_to_queue(ip, port, round, status):
 
-    #TODO add aws_access_key_id and aws_secret_access_key
+    # Get keys to service account
+    aws_access_key_id = os.environ.get('AWS_ACCESS_KEY_ID')
+    aws_secret_access_key = os.environ.get('AWS_SECRET_ACCESS_KEY')
 
+    
     # Create client
     client = boto3.client(
         service_name='sqs',
