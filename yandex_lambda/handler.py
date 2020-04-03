@@ -29,28 +29,28 @@ def status_to_queue(ip, port, round, status):
 
 
     # Send message to queue
-        client.send_message(
-            QueueUrl=queue_url,
-            MessageBody='{},{},{},{}'.format(ip, port, round, status),
-            MessageAttributes={
-                        "ip": {
-                            "StringValue": str(ip),
-                            "DataType": "Number"
-                        },
-                        "port": {
-                            "StringValue": str(port),
-                            "DataType": "Number"
-                        },
-                        "round": {
-                            "StringValue": str(round),
-                            "DataType": "Number"
-                        }
-                        "status": {
-                            "StringValue": str(status),
-                            "DataType": "Number"
-                        }
+    client.send_message(
+        QueueUrl=queue_url,
+        MessageBody='{},{},{},{}'.format(ip, port, round, status),
+        MessageAttributes={
+                    "ip": {
+                        "StringValue": str(ip),
+                        "DataType": "Number"
+                    },
+                    "port": {
+                        "StringValue": str(port),
+                        "DataType": "Number"
+                    },
+                    "round": {
+                        "StringValue": str(round),
+                        "DataType": "Number"
+                    },
+                    "status": {
+                        "StringValue": str(status),
+                        "DataType": "Number"
                     }
-        )
+                }
+    )
 
 def handle_http(event):
 
