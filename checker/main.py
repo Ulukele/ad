@@ -1,12 +1,16 @@
 import boto3
+import os
+
 
 requestst = ({'ip':'ip1', 'port':'port1', 'round':'round1'},{'ip':'ip2', 'port':'port2', 'round':'round2'},{'ip':'ip3', 'port':'port3', 'round':'round3'})
 
 def main():
 
-    #TODO read from config
-    aws_access_key_id = input('aws_access_key_id: ')
-    aws_secret_access_key = input('aws_secret_access_key: ')
+
+    # Get keys to service account
+    aws_access_key_id = os.environ.get('AWS_ACCESS_KEY_ID')
+    aws_secret_access_key = os.environ.get('AWS_SECRET_ACCESS_KEY=')
+
 
     # Create client
     client = boto3.client(
