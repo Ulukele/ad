@@ -4,12 +4,17 @@ requestst = ({'ip':'ip1', 'port':'port1', 'round':'round1'},{'ip':'ip2', 'port':
 
 def main():
 
+    #TODO read from config
+    aws_access_key_id = input('aws_access_key_id: ')
+    aws_secret_access_key = input('aws_secret_access_key: ')
 
     # Create client
     client = boto3.client(
         service_name='sqs',
         endpoint_url='https://message-queue.api.cloud.yandex.net',
-        region_name='ru-central1'
+        region_name='ru-central1',
+        aws_access_key_id=aws_access_key_id,
+        aws_secret_access_key=aws_secret_access_key
     )
 
     
