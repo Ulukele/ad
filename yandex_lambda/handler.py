@@ -32,9 +32,12 @@ def handle_queue_message(event):
     try:
         message = event['messages'][0]
 
-        parameters = message['details']['message']['body'].split(',')
+        parameters = message['details']['message']['message_attributes']
+        ip = parameters['ip']['stringValue']
+        port = parameters['port']['stringValue']
+        round = parameters['round']['stringValue']
 
-        response = subprocess.run([PYTHON_VERSION, 'main.py', '--ip', parameters[0], '--port', parameters[1], '--round', parameters[2]], stdout=subprocess.PIPE)
+        response = subprocess.run([PYTHON_VERSION, 'main.py', '--ip', ip, '--port', port, '--round', round], stdout=subprocess.PIPE)
         response_text = response.stdout.decode('utf-8').split('\n')[:-1]
 
         response_error, response_code = "", None

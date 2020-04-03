@@ -26,7 +26,21 @@ def main():
         # Send message to queue
         client.send_message(
             QueueUrl=queue_url,
-            MessageBody='{},{},{}'.format(req['ip'],req['port'],req['round'])
+            MessageBody='{},{},{}'.format(req['ip'],req['port'],req['round']),
+            MessageAttributes={
+                        "ip": {
+                            "StringValue": str(req['ip']),
+                            "DataType": "Number"
+                        },
+                        "port": {
+                            "StringValue": str(req['port']),
+                            "DataType": "Number"
+                        },
+                        "round": {
+                            "StringValue": str(req['round']),
+                            "DataType": "Number"
+                        }
+                    }
         )
         print('Successfully sent message to queue with args: ')
         print('ip', req['ip'])
