@@ -1,6 +1,6 @@
 import boto3
 
-requestst = ({'ip':'ip', 'port':'port', 'round':'round'},)
+requestst = ({'ip':'ip1', 'port':'port1', 'round':'round1'},{'ip':'ip2', 'port':'port2', 'round':'round2'},{'ip':'ip3', 'port':'port3', 'round':'round3'})
 
 def main():
 
@@ -23,7 +23,10 @@ def main():
             QueueUrl=queue_url,
             MessageBody='{},{},{}'.format(req['ip'],req['port'],req['round'])
         )
-        print('Successfully sent message to queue')
+        print('Successfully sent message to queue with args: ')
+        print('ip', req['ip'])
+        print('port', req['port'])
+        print('round', req['round'])
 
 if __name__ == '__main__':
     main()
