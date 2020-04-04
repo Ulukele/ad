@@ -1,3 +1,5 @@
+""" this code needs to send check-requests to yandex cloud """
+
 import boto3
 import os
 

@@ -1,4 +1,4 @@
-""" checker entrypoint """
+""" checker entrypoint. this code must run in the Yandex cloud """
 
 from verdict_codes import *
 

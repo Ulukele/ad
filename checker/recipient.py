@@ -1,3 +1,9 @@
+"""
+this code needs to recieve check-response from yandex cloud 
+(now checker still can't send response, maybe that file will be deleted sometime)
+"""
+
+
 import boto3
 
 
@@ -32,7 +38,7 @@ def main():
     ).get('Messages')
     for msg in messages:
         print('Received message: "{}"'.format(msg.get('Body')))
-        print('msg: ', msg)
+        print('Full message with attributes: ', msg)
 
 
 if __name__ == '__main__':
