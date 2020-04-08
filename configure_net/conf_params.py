@@ -4,7 +4,7 @@
 FOLDER_ID = ""
 
 #zone id can be: ru-central1-a, ru-central1-b, ru-central1-c
-ZONE_ID = "ru-central1-a"
+ZONE_ID = "ru-central1-c"
 
 #url to  VPC
 URL_VPC = "https://vpc.api.cloud.yandex.net/vpc/v1/networks"

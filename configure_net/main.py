@@ -13,8 +13,72 @@ headers = {
 }
 
 
-def create_vm():
-    #TODO
+def create_vm(subnet_id):
+
+    #edit VM parameters here
+
+    """
+    platformId (more info in yandex cloud documentation):
+        Intel Broadwell: standard-v1
+        Intel Cascade Lake: standard-v2
+        Intel Broadwell with NVIDIA Tesla V100: gpu-standard-v1
+    """
+
+    """
+    resourcesSpec. Computing parameters
+        memory: in bytes
+        cores: (min 1, max 32)
+        coreFraction: in percents
+        gpus (optional)
+    """
+
+    """
+    bootDiskSpec. Disk configuration
+        mode (optional)
+        deviceName (optional)
+        autoDelete (optional)
+        diskSpec:
+            name (optional)
+            description (optional)
+            typeId (optional): HDD or SSD
+            size: in bytes (min: 4194304; max: 4398046511104)
+            imageId (optional)
+            snapshotId (optional)
+        diskId - can be used instead of 'diskSpec'
+    """
+
+    """
+    networkInterfaceSpecs[]. Network configuration
+        subnetId the only required parameter
+    """
+
+    """
+    schedulingPolicy
+        preemptible the only parameter 
+    """
+
+    
+    data = {
+        'folderId': FOLDER_ID,
+        'zoneId': ZONE_ID,
+        'platformId': "standard-v1",
+        'resourcesSpec': {
+            'memory': "1073741824",
+            'cores': "1",
+            'coreFraction': "5",
+        },
+        'bootDiskSpec': {
+            'size': '4194304'
+        },
+        'networkInterfaceSpecs': [
+            {
+                'subnetId': subnet_id
+            }
+        ],
+        'schedulingPolicy': {
+            'preemptible': True
+        }
+    }
 
 
 def create_subnet(network_id, name="subnet-1", description=""):
