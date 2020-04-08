@@ -1,14 +1,11 @@
 import requests
 import os
 
+from conf_params import *
+
+
 #your IAM token
 iam_token = os.environ.get('YANDEX_CLOUD_IAM_TOKEN')
-
-#where nets should be created
-folder_id = ""
-
-url = "https://vpc.api.cloud.yandex.net/vpc/v1/networks"
-
 
 
 headers = {
@@ -16,48 +13,42 @@ headers = {
 }
 
 
-#parameters for GET
-params = {
-    'folderId': folder_id
-    #key: value
-}
-
-
-#parameters for POST
-data = {
-    'folderId': folder_id
-    #key: value
-}
-
-
-TEAM = "team-{}"
-DESCRIPTION = "net created for {}"
-SUBNET_CIDR = "192.168.50.0/24"
+def create_vm():
+    #TODO
 
 
 def create_subnet(network_id, name="subnet-1", description=""):
 
-    data_ = data.copy()
-    data_['networkId'] = network_id
-    data_['v4CidrBlocks'] = [
-        SUBNET_CIDR
-    ]
-    data_['name'] = name
-    data_['description'] = description
+    data = {
+        'folderId': FOLDER_ID,
+        'networkId': network_id,
+        'v4CidrBlocks': [
+            SUBNET_CIDR
+        ],
+        'name': name,
+        'description': description
+    }
 
-    return requests.post(url=url, headers=headers, json=data_)
+    return requests.post(url=URL_VPC, headers=headers, json=data)
 
 def create_net(name, description=""):
 
-    data_ = data.copy()
-    data_['name'] = name
-    data_['description'] = description
+    data = {
+        'folderId': FOLDER_ID,
+        'name': name,
+        'description': description
+    }
 
-    return requests.post(url=url, headers=headers, json=data_)
+    return requests.post(url=URL_VPC, headers=headers, json=data)
 
 def get_nets_list():
 
-    response = requests.get(url=url, headers=headers, params=params)
+
+    params = {
+        'folderId': FOLDER_ID
+    }
+
+    response = requests.get(url=URL_VPC, headers=headers, params=params)
 
     if response.status_code == 200:
         response_json = response.json()
